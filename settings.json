@@ -1,0 +1,5 @@
+{
+  "cursor.completion.enabled": true,
+  "cursor.completion.triggerMode": "manual",
+  "cursor.completion.delay": 0
+} 

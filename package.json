@@ -5,10 +5,12 @@
   "description": "My Electron application description",
   "main": ".vite/build/main.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build && electron-builder",
+    "dev": "cross-env NODE_ENV=development vite --config vite.renderer.config.ts",
+    "build": "cross-env NODE_ENV=production vite build",
     "preview": "vite preview",
-    "start": "electron-forge start",
+    "start:dev": "cross-env NODE_ENV=development electron-forge start",
+    "start:test": "cross-env NODE_ENV=test electron-forge start",
+    "start:prod": "cross-env NODE_ENV=production electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
@@ -24,16 +26,20 @@
     "@electron-forge/plugin-fuses": "^7.6.1",
     "@electron-forge/plugin-vite": "^7.6.1",
     "@electron/fuses": "^1.8.0",
+    "@types/electron-squirrel-startup": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "@vitejs/plugin-vue": "^5.2.1",
+    "cross-env": "^7.0.3",
     "electron": "34.1.1",
     "eslint": "^8.0.1",
     "eslint-plugin-import": "^2.25.0",
     "less": "^4.2.2",
     "ts-node": "^10.0.0",
     "typescript": "~4.5.4",
-    "vite": "^5.0.12"
+    "vite": "^5.0.12",
+    "vite-plugin-vue-devtools": "^7.7.1",
+    "vite-plugin-vue-inspector": "^5.3.1"
   },
   "keywords": [],
   "author": {
@@ -48,7 +54,6 @@
     "marked": "^15.0.6",
     "openai": "^4.83.0",
     "pinia": "^2.3.1",
-    "vite-plugin-vue-devtools": "^7.7.1",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   }

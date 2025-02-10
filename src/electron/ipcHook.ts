@@ -8,8 +8,9 @@ export const registerIpcHandlers = () => {
   })
 
   // 双向通信：接收渲染进程的消息，并返回结果
+  ipcMain.removeHandler('receiveAndReturn') // 移除后从新监听
   ipcMain.handle('receiveAndReturn', (event, message: string) => {
-    console.log('receiveAndReturn', message)
+    console.log('receiveAndReturn  555', message)
 
     // 想返回什么都可以
     const ret = {

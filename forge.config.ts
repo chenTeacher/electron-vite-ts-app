@@ -49,6 +49,20 @@ const config: ForgeConfig = {
       [FuseV1Options.OnlyLoadAppFromAsar]: true,
     }),
   ],
+  hooks: {
+    prePackage: async () => {
+      console.log('[Electron Forge] 开始打包...');
+    },
+    postPackage: async () => {
+      console.log('[Electron Forge] 打包完成！');
+    },
+    preMake: async () => {
+      console.log('[Electron Forge] 开始生成可执行文件...');
+    },
+    postMake: async () => {
+      console.log('[Electron Forge] 生成完成！');
+    }
+  }
 };
 
 export default config;
