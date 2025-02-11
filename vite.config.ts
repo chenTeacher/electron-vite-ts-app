@@ -16,6 +16,10 @@ export default defineConfig(() => {
         "@": fileURLToPath(new URL("./src/renderer", import.meta.url)),
       },
     },
+    server: {
+      port: 8080,
+      open: true,
+    },
   };
 
   if (process.env.NODE_ENV === "development") {

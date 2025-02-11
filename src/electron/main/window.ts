@@ -2,8 +2,8 @@
 import { BrowserWindow, globalShortcut } from "electron";
 import path from "node:path";
 
-const WINDOW_WIDTH = 800;
-const WINDOW_HEIGHT = 600;
+const WINDOW_WIDTH = 1200;
+const WINDOW_HEIGHT = 800;
 const WINDOW_ICON = path.join(__dirname, "assets/logo.png");
 
 //  创建窗口
@@ -25,9 +25,8 @@ export const createWindow = () => {
       path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`)
     );
   }
-  return mainWindow
+  return mainWindow;
 };
-
 
 // 对窗口的菜单做出调整
 export const setWindowMenu = (mainWindow: BrowserWindow) => {
@@ -37,7 +36,7 @@ export const setWindowMenu = (mainWindow: BrowserWindow) => {
 // 调试开发工具逻辑
 export const openDevTools = (mainWindow: BrowserWindow) => {
   // 注册快捷键
-  registerShortcut(mainWindow)
+  registerShortcut(mainWindow);
   // 如果是开发环境，则默认打开发工具
   if (process.env.NODE_ENV === "development") {
     mainWindow.webContents.openDevTools();
@@ -49,36 +48,36 @@ export const openDevTools = (mainWindow: BrowserWindow) => {
 };
 
 export const initWindow = () => {
-  const mainWindow = createWindow()
-  setWindowMenu(mainWindow)
-  openDevTools(mainWindow)
+  const mainWindow = createWindow();
+  setWindowMenu(mainWindow);
+  openDevTools(mainWindow);
+  return mainWindow;
 };
-
 
 // 注册快捷键
 export const registerShortcut = (mainWindow: BrowserWindow) => {
   // 在注册前先检查快捷键是否已被注册
-  if (globalShortcut.isRegistered('ALT+F12')) {
-    console.log('F12快捷键已被注册，尝试注销后重新注册');
-    globalShortcut.unregister('F12');
+  if (globalShortcut.isRegistered("ALT+F12")) {
+    console.log("F12快捷键已被注册，尝试注销后重新注册");
+    globalShortcut.unregister("F12");
   }
 
   try {
     const ret = globalShortcut.register("ALT+F12", () => {
       mainWindow.webContents.openDevTools();
     });
-    
+
     if (!ret) {
-      console.log('F12快捷键注册失败，可能被其他程序占用');
+      console.log("F12快捷键注册失败，可能被其他程序占用");
     } else {
-      console.log('F12快捷键注册成功');
+      console.log("F12快捷键注册成功");
     }
   } catch (error) {
-    console.error('注册快捷键时发生错误:', error);
+    console.error("注册快捷键时发生错误:", error);
   }
 
-   // 监听窗口关闭事件，注销快捷键
-   mainWindow.on('closed', () => {
-    globalShortcut.unregister('F12');
+  // 监听窗口关闭事件，注销快捷键
+  mainWindow.on("closed", () => {
+    globalShortcut.unregister("F12");
   });
-}
+};
