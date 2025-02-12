@@ -40,11 +40,13 @@ const requestDevice = async () => {
     console.log("device 开始");
     const isAvailability = await navigator.bluetooth.getAvailability();
     console.log(isAvailability);
-    const device = await navigator.bluetooth.getDevices();
+    const device = await navigator.bluetooth.requestDevice({
+      acceptAllDevices: true,
+    });
     console.log("device", device);
     // 检查设备是否已经在列表中
     const existingDeviceIndex = devices.value.findIndex(
-      (d) => d.id === device.id
+      (d) => d.id === device.id,
     );
     const newDevice: BluetoothDevice = {
       id: device.id,

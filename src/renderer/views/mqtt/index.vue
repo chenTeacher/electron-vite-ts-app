@@ -1,6 +1,7 @@
 <template>
   <div class="content">
     <div>
+      <PortocolRegister></PortocolRegister>
       <p>连接设置</p>
       <a-form
         :model="connectInfo"
@@ -141,7 +142,7 @@ import { useRouter } from "vue-router";
 import time from "../../../sdk/api/common/utils/time";
 import moment from "moment";
 import BMSProtocol from "../../../sdk/api/protocol/BMSProtocol";
-
+import PortocolRegister from "./../protocol/PortocolRegister.vue";
 interface ConnectInfo {
   clientId: string; // 客户端ID
   host: string; // 地址(wss)

@@ -61,12 +61,16 @@ const switchProtocolType = async function (e: Event) {
       selectProtocolOptions.value = await new PowerProtocol().list();
       break;
   }
+  selectedProtocol.value = "";
+  handleChange("", {});
 };
 
 const handleChange = (value: string, option: any) => {
   console.log("handleChange", value, option);
+
   let selected = option as SelectProtocol;
-  instance.appContext.config.globalProperties.selectProtocol = selected;
+  instance.appContext.config.globalProperties.selectProtocol =
+    value === "" ? null : selected;
 };
 </script>
 
